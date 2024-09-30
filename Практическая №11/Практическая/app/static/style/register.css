@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    padding: 0;
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+form {
+    max-width: 400px; /* adjust the width to your liking */
+    margin: 40px auto; /* center the form */
+    padding: 20px; /* add some padding */
+    border: 1px solid #ccc; /* add a border */
+    border-radius: 10px; /* add some rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* add some subtle shadow */
+}
+
+label {
+    display: block; /* make labels block elements */
+    margin-bottom: 10px; /* add some space between labels */
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%; /* make input fields full-width */
+    padding: 10px; /* add some padding */
+    margin-bottom: 20px; /* add some space between input fields */
+    border: 1px solid #ccc; /* add a border */
+    border-radius: 5px; /* add some rounded corners */
+}
+
+button[type="submit"] {
+    background-color: #4CAF50; /* add a green background color */
+    color: #fff; /* add white text color */
+    padding: 10px 20px; /* add some padding */
+    border: none; /* remove border */
+    border-radius: 5px; /* add some rounded corners */
+    cursor: pointer; /* add a pointer cursor */
+}
+
+button[type="submit"]:hover {
+    background-color: #3e8e41; /* add a darker green background color on hover */
+}

@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="">Главная</a></li>
+                <li><a href="">О нас</a></li>
+                <li><a href="{% url 'book_list' %}">Каталог</a></li>
+                {% if user.is_authenticated %}
+                    <li>Вы вошли как {{ user.username }}</li>
+                    <li><a href="{% url 'logout' %}">Выйти</a></li>
+                    <li><a href="{% url 'profile' %}">Профиль</a></li>
+                {% else %}
+                    <li><a href="{% url 'register' %}">Регистрация</a></li>
+                    <li><a href="{% url 'login' %}">Войти</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    
+    <h1>Список книг</h1>
+    
+    {% block content %}
+    <div class="book-list">
+        <ul>
+            {% for book in book_list %}
+                <li class="book-item">
+                    <div class="book-info">
+                        <h2>{{ book.title }} ({{ book.publication_date }})</h2>
+                        <p>Авторы: 
+                            {% for author in book.authors.all %}
+                                {{ author.first_name }} {{ author.last_name }},
+                            {% endfor %}
+                        </p>
+                        <p>Издательство: {{ book.publisher.name }}</p>
+                    </div>
+                    <div class="book-image">
+                        <img src="{{ book.image.url }}" alt="{{ book.title }}">
+                    </div>
+                    <a href="{% url 'book_detail' book.id %}">Подробнее</a>
+                    <form action="{% url 'add_to_cart' book.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Add to cart</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endfor %}
+        </ul>
+    </div>
+    <div class="stationery-list">
+        <h2>Канцтовары</h2>
+        <ul>
+            {% for stationery in stationery %}
+                <li class="stationery-item">
+                    <div class="stationery-info">
+                        <h2>{{ stationery.title }}</h2>
+                        <p>{{ stationery.description }}</p>
+                        <p>Цена: {{ stationery.price }}</p>
+                    </div>
+                    <div class="stationery-image">
+                        <img src="{{ stationery.image.url }}" alt="{{ stationery.title }}">
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+</body>
+</html>

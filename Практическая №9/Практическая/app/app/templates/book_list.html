@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Книги и канцтовары</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li><a href="">О нас</a></li>
+                <li><a href="{% url 'book_list' %}">Каталог</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <h1>Список книг</h1>
+    
+    {% block content %}
+    <div class="book-list">
+        <ul>
+            {% for book in book_list %}
+  <li class="book-item">
+    <div class="book-info">
+      <h2>{{ book.title }} ({{ book.publication_date }})</h2>
+      <p>Авторы: 
+        {% for author in book.authors.all %}
+          {{ author.first_name }} {{ author.last_name }},
+        {% endfor %}
+      </p>
+      <p>Издательство: {{ book.publisher.name }}</p>
+    </div>
+    <div class="book-image">
+      <img src="{{ book.image.url }}" alt="{{ book.title }}">
+    </div>
+    <a href="{% url 'book_detail' book.id %}">Подробнее</a>
+  </li>
+{% endfor %}
+        </ul>
+    </div>
+    <div class="stationery-list">
+        <h2>Канцтовары</h2>
+        <ul>
+            {% for stationery in stationery %}
+                <li class="stationery-item">
+                    <div class="stationery-info">
+                        <h2>{{ stationery.title }}</h2>
+                        <p>{{ stationery.description }}</p>
+                        <p>Цена: {{ stationery.price }}</p>
+                    </div>
+                    <div class="stationery-image">
+                        <img src="{{ stationery.image.url }}" alt="{{ stationery.title }}">
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+</body>
+</html>

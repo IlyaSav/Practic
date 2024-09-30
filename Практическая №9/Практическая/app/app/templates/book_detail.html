@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="book-detail">
+    <h1>{{ book.title }} ({{ book.publication_date }})</h1>
+    <p>Авторы: 
+      {% for author in book.authors.all %}
+        {{ author.first_name }} {{ author.last_name }},
+      {% endfor %}
+    </p>
+    <p>Издательство: {{ book.publisher.name }}</p>
+    <img src="{{ book.image.url }}" alt="{{ book.title }}">
+    <!-- Add more details about the book here -->
+  </div>
+{% endblock %}

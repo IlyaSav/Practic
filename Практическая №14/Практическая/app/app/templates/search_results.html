@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Search Results</h1>
+    
+    {% if book_list %}
+        <h2>Книги</h2>
+        <ul>
+            {% for book in book_list %}
+                <li>
+                    <h2>{{ book.title }} ({{ book.publication_date }})</h2>
+                    <p>Авторы: 
+                        {% for author in book.authors.all %}
+                            {{ author.first_name }} {{ author.last_name }},
+                        {% endfor %}
+                    </p>
+                    <p>Издательство: {{ book.publisher.name }}</p>
+                    <a href="{% url 'book_detail' book.id %}">Подробнее</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    {% if stationery_list %}
+        <h2>Канцтовары</h2>
+        <ul>
+            {% for stationery in stationery_list %}
+                <li>
+                    <h2>{{ stationery.title }}</h2>
+                    <p>{{ stationery.description }}</p>
+                    <p>Цена: {{ stationery.price }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

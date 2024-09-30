@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Товары для животных</h1>
+        <nav>
+            <ul>
+                <li><a href="">Главная</a></li>
+                <li><a href="">О нас</a></li>
+                <li><a href="">Товары</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Наши товары</h2>
+        <ul>
+            <li>Корма для собак</li>
+            <li>Корма для кошек</li>
+            <li>Игрушки для животных</li>
+            <li>Аксессуары для ухода</li>
+            <li>Одежда для домашних питомцев</li>
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2023 Товары для животных</p>
+    </footer>
+
+
+
+
+    {% block content %}
+
+
+
+
+     {% endblock %}
+
+</body>
+</html>

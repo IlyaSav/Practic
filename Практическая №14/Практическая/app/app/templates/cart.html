@@ -1,0 +1,12 @@
+<div class="cart">
+    <h1>Корзина</h1>
+    <ul>
+        {% for item in cart_items %}
+            <li>
+                {{ item.book.title }} x {{ item.quantity }}
+                <a href="{% url 'remove_from_cart' item.id %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Итого: {{ cart_items|length }} товаров</p>
+</div>
